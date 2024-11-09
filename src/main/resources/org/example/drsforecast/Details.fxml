@@ -1,12 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="557.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.drsforecast.DetailsController">
-   <children>
-      <Label fx:id="fileNameLabel" layoutX="118.0" layoutY="89.0" prefHeight="42.0" prefWidth="640.0" />
-      <Label fx:id="businessHoursLabel" layoutX="104.0" layoutY="270.0" prefHeight="17.0" prefWidth="663.0" />
-   </children>
+<AnchorPane prefHeight="734.0" prefWidth="1306.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.drsforecast.DetailsController">
+    <children>
+        <!-- TableView for Total Orders -->
+        <TableView fx:id="totalOrderTable" layoutX="39.0" layoutY="97.0" prefHeight="472.0" prefWidth="609.0">
+            <columns>
+                <TableColumn fx:id="hourColumn1" prefWidth="75.0" text="Hour" />
+                <TableColumn fx:id="monColumn1" prefWidth="75.0" text="Monday" />
+                <TableColumn fx:id="tueColumn1" prefWidth="75.0" text="Tuesday" />
+                <TableColumn fx:id="wedColumn1" prefWidth="75.0" text="Wednesday" />
+                <TableColumn fx:id="thuColumn1" prefWidth="75.0" text="Thursday" />
+                <TableColumn fx:id="friColumn1" prefWidth="75.0" text="Friday" />
+                <TableColumn fx:id="satColumn1" prefWidth="75.0" text="Saturday" />
+                <TableColumn fx:id="sunColumn1" prefWidth="75.0" text="Sunday" />
+            </columns>
+        </TableView>
+
+        <!-- TableView for Delivered Orders -->
+        <TableView fx:id="delvOrderTable" layoutX="684.0" layoutY="97.0" prefHeight="472.0" prefWidth="609.0">
+            <columns>
+                <TableColumn fx:id="hourColumn2" prefWidth="75.0" text="Hour" />
+                <TableColumn fx:id="monColumn2" prefWidth="75.0" text="Monday" />
+                <TableColumn fx:id="tueColumn2" prefWidth="75.0" text="Tuesday" />
+                <TableColumn fx:id="wedColumn2" prefWidth="75.0" text="Wednesday" />
+                <TableColumn fx:id="thuColumn2" prefWidth="75.0" text="Thursday" />
+                <TableColumn fx:id="friColumn2" prefWidth="75.0" text="Friday" />
+                <TableColumn fx:id="satColumn2" prefWidth="75.0" text="Saturday" />
+                <TableColumn fx:id="sunColumn2" prefWidth="75.0" text="Sunday" />
+            </columns>
+        </TableView>
+    </children>
 </AnchorPane>
+

@@ -6,17 +6,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
 import java.io.File;
 
 public class ConfigController {
 
     @FXML
     private TextField openTxtField; // For opening time
+
     @FXML
     private TextField closeTxtField; // For closing time
 
-    private Stage primaryStage;
-    private File selectedFile;
+    private Stage primaryStage; // Reference to the primary stage
+
+    private File selectedFile; // Reference to the selected file
 
     // Set the primary stage
     public void setStage(Stage stage) {
@@ -29,6 +32,7 @@ public class ConfigController {
         System.out.println("File received in ConfigController: " + file.getAbsolutePath());
     }
 
+    // Handle "Next" button click
     @FXML
     private void handleNext(ActionEvent event) {
         // Validate time input
@@ -43,18 +47,19 @@ public class ConfigController {
         }
     }
 
+    // Validate time format (e.g., 10:00, 01:00)
     private boolean validateTime(String time) {
-        // Validate time format (e.g., 10:00, 01:00)
         return time.matches("\\d{2}:\\d{2}");
     }
 
+    // Navigate to the Details screen
     private void goToDetailsScreen(String openTime, String closeTime) {
         try {
             // Load Details.fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/drsforecast/Details.fxml"));
             Scene detailsScene = new Scene(loader.load());
 
-            // Pass the file and times to DetailsController
+            // Get the controller and pass the file and times to DetailsController
             DetailsController detailsController = loader.getController();
             detailsController.setFileAndTimes(selectedFile, openTime, closeTime);
 
