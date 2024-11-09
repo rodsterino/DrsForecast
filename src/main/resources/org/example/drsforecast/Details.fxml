@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="557.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.drsforecast.DetailsController">
+   <children>
+      <Label fx:id="fileNameLabel" layoutX="118.0" layoutY="89.0" prefHeight="42.0" prefWidth="640.0" />
+      <Label fx:id="businessHoursLabel" layoutX="104.0" layoutY="270.0" prefHeight="17.0" prefWidth="663.0" />
+   </children>
+</AnchorPane>
