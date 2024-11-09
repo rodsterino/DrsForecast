@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="565.0" prefWidth="728.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.drsforecast.FileSelectionController">
+<AnchorPane prefHeight="565.0" prefWidth="728.0" style="-fx-background-color: #ffffff;" stylesheets="@Loading.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.drsforecast.FileSelectionController">
    <children>
       <ImageView fitHeight="502.0" fitWidth="609.0" layoutX="31.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../Pictures/Dominos-logo.png" />
          </image>
       </ImageView>
-      <Button fx:id="UploadBtn" layoutX="290.0" layoutY="413.0" mnemonicParsing="false" onAction="#handleSelectFile" prefHeight="40.0" prefWidth="194.0" style="-fx-background-color: #006491; -fx-border-color: #e31837;" text="Upload">
+      <Button id="buttonLoad " fx:id="UploadBtn" layoutX="290.0" layoutY="413.0" mnemonicParsing="false" onAction="#handleSelectFile" prefHeight="40.0" prefWidth="194.0" stylesheets="@Loading.css" text="Upload">
          <font>
             <Font size="31.0" />
          </font>

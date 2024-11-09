@@ -1,0 +1,14 @@
+#buttonLoad {
+    border-radius: 25px; /* Makes the edges round */
+    font-weight: bold;   /* Makes the text bold */
+    color: white;        /* Makes the text color white */
+    background-color:  #006491; /* Sets a blue background color */
+    padding: 10px 20px;  /* Adds padding for better appearance */
+    border: none;        /* Removes any border */
+    cursor: pointer;     /* Changes the cursor to a pointer on hover */
+    border-bottom-color: #e31837;
+}
+
+button:hover {
+    background-color:  #e31837; /* Changes background color on hover */
+}

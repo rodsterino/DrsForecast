@@ -12,30 +12,25 @@ import java.io.File;
 public class ConfigController {
 
     @FXML
-    private TextField openTxtField; // For opening time
+    private TextField openTxtField;
 
     @FXML
-    private TextField closeTxtField; // For closing time
+    private TextField closeTxtField;
 
-    private Stage primaryStage; // Reference to the primary stage
+    private Stage primaryStage;
+    private File selectedFile;
 
-    private File selectedFile; // Reference to the selected file
-
-    // Set the primary stage
     public void setStage(Stage stage) {
         this.primaryStage = stage;
     }
 
-    // Set the selected file
     public void setSelectedFile(File file) {
         this.selectedFile = file;
         System.out.println("File received in ConfigController: " + file.getAbsolutePath());
     }
 
-    // Handle "Next" button click
     @FXML
     private void handleNext(ActionEvent event) {
-        // Validate time input
         String openTime = openTxtField.getText();
         String closeTime = closeTxtField.getText();
 
@@ -47,23 +42,18 @@ public class ConfigController {
         }
     }
 
-    // Validate time format (e.g., 10:00, 01:00)
     private boolean validateTime(String time) {
         return time.matches("\\d{2}:\\d{2}");
     }
 
-    // Navigate to the Details screen
     private void goToDetailsScreen(String openTime, String closeTime) {
         try {
-            // Load Details.fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/drsforecast/Details.fxml"));
             Scene detailsScene = new Scene(loader.load());
 
-            // Get the controller and pass the file and times to DetailsController
             DetailsController detailsController = loader.getController();
             detailsController.setFileAndTimes(selectedFile, openTime, closeTime);
 
-            // Set the scene to Details.fxml
             primaryStage.setScene(detailsScene);
         } catch (Exception e) {
             e.printStackTrace();

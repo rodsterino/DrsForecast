@@ -1,8 +1,15 @@
 package org.example.drsforecast;
 
 public class RowData {
+
     private String hour;
-    private int monCount, tueCount, wedCount, thuCount, friCount, satCount, sunCount;
+    private int monCount;
+    private int tueCount;
+    private int wedCount;
+    private int thuCount;
+    private int friCount;
+    private int satCount;
+    private int sunCount;
 
     public RowData(String hour, int monCount, int tueCount, int wedCount, int thuCount,
                    int friCount, int satCount, int sunCount) {
@@ -16,12 +23,36 @@ public class RowData {
         this.sunCount = sunCount;
     }
 
-    public String getHour() { return hour; }
-    public int getMonCount() { return monCount; }
-    public int getTueCount() { return tueCount; }
-    public int getWedCount() { return wedCount; }
-    public int getThuCount() { return thuCount; }
-    public int getFriCount() { return friCount; }
-    public int getSatCount() { return satCount; }
-    public int getSunCount() { return sunCount; }
+    // Getters
+    public String getHour() {
+        return hour;
+    }
+
+    public int getMonCount() {
+        return monCount;
+    }
+
+    public int getTueCount() {
+        return tueCount;
+    }
+
+    public int getWedCount() {
+        return wedCount;
+    }
+
+    public int getThuCount() {
+        return thuCount;
+    }
+
+    public int getFriCount() {
+        return friCount;
+    }
+
+    public int getSatCount() {
+        return satCount;
+    }
+
+    public int getSunCount() {
+        return sunCount;
+    }
 }
