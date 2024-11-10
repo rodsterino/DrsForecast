@@ -20,7 +20,7 @@ public class Main extends Application {
             controller.setStage(primaryStage);
 
             // Set up the scene and show the stage
-            Scene scene = new Scene(root, 800, 520);
+            Scene scene = new Scene(root, 723, 483);
             primaryStage.setTitle("Drs Forecast Application");
             primaryStage.setScene(scene);
             primaryStage.show();
