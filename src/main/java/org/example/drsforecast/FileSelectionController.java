@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.File;
@@ -40,22 +41,26 @@ public class FileSelectionController {
 
     private void goToConfigScreen() {
         try {
-            // Load Config.fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/drsforecast/Config.fxml"));
             Scene configScene = new Scene(loader.load());
 
-            // Pass the selected file to ConfigController
             ConfigController configController = loader.getController();
             configController.setSelectedFile(selectedFile);
-
-            // Pass the stage to ConfigController
             configController.setStage(primaryStage);
 
-            // Set the scene to Config.fxml
             primaryStage.setScene(configScene);
         } catch (Exception e) {
             e.printStackTrace();
+            showErrorDialog("Error loading the configuration screen", e.getMessage());
         }
+    }
+
+    private void showErrorDialog(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
 
