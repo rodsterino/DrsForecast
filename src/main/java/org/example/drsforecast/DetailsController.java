@@ -4,8 +4,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +35,12 @@ public class DetailsController {
     private TableColumn<RowData, String> hourColumn2;
     @FXML
     private TableColumn<RowData, Integer> monColumn2, tueColumn2, wedColumn2, thuColumn2, friColumn2, satColumn2, sunColumn2;
+
+    @FXML
+    private Text storeTxt;
+
+    @FXML
+    private Text dateTxt;
 
     private File selectedFile;
     private String openTime;
@@ -89,8 +103,64 @@ public class DetailsController {
             totalOrderTable.getItems().setAll(totalOrderList);
             delvOrderTable.getItems().setAll(delvOrderList);
 
+            // Load the Excel file to get store and week begin date
+            try (FileInputStream fis = new FileInputStream(selectedFile);
+                 Workbook workbook = new XSSFWorkbook(fis)) {
+
+                Sheet sheet = workbook.getSheetAt(0);
+                Row headerRow = sheet.getRow(0);
+
+                int storeColumnIndex = -1;
+                int weekBeginDateColumnIndex = -1;
+
+                // Find the column indices for "Store" and "Week Begin Date"
+                for (Cell cell : headerRow) {
+                    if (cell.getStringCellValue().equalsIgnoreCase("Store")) {
+                        storeColumnIndex = cell.getColumnIndex();
+                    } else if (cell.getStringCellValue().equalsIgnoreCase("Week Begin Date")) {
+                        weekBeginDateColumnIndex = cell.getColumnIndex();
+                    }
+                }
+
+                if (storeColumnIndex == -1 || weekBeginDateColumnIndex == -1) {
+                    throw new IllegalArgumentException("Excel file does not contain required columns");
+                }
+
+                // Read the first row to get the store and week begin date
+                Row firstDataRow = sheet.getRow(1);
+                String store = getCellValueAsString(firstDataRow.getCell(storeColumnIndex));
+                LocalDate weekBeginDate = firstDataRow.getCell(weekBeginDateColumnIndex).getLocalDateTimeCellValue().toLocalDate();
+                LocalDate weekEndDate = weekBeginDate.plus(6, ChronoUnit.DAYS);
+
+                // Update the text fields
+                storeTxt.setText(store);
+                dateTxt.setText(weekBeginDate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")) + " - " + weekEndDate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")));
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private String getCellValueAsString(Cell cell) {
+        switch (cell.getCellType()) {
+            case STRING:
+                return cell.getStringCellValue();
+            case NUMERIC:
+                if (DateUtil.isCellDateFormatted(cell)) {
+                    return cell.getLocalDateTimeCellValue().toLocalDate().toString();
+                } else {
+                    return String.valueOf((int) cell.getNumericCellValue());
+                }
+            case BOOLEAN:
+                return String.valueOf(cell.getBooleanCellValue());
+            case FORMULA:
+                return cell.getCellFormula();
+            default:
+                return "";
         }
     }
 
@@ -160,4 +230,3 @@ public class DetailsController {
         return new RowData("Totals", monTotal, tueTotal, wedTotal, thuTotal, friTotal, satTotal, sunTotal);
     }
 }
-

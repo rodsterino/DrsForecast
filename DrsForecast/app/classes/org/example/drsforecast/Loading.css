@@ -1,0 +1,73 @@
+/* Apply a white background to the entire scene */
+.root {
+    -fx-background-color: #ffffff;
+}
+
+/* Style for the header text */
+.label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #006491; /* Blue color */
+    -fx-alignment: center;
+}
+
+/* Style for the NEXT button */
+.button {
+    -fx-background-color: #006491; /* Blue background */
+    -fx-text-fill: #ffffff; /* White text */
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-border-color: #e31837; /* Red border */
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px 10px;
+}
+
+/* Hover effect for the button */
+.button:hover {
+    -fx-background-color: #e31837; /* Red background on hover */
+    -fx-text-fill: #ffffff; /* White text */
+}
+
+/* Style for the text fields */
+.text-field {
+    -fx-border-color: #006491; /* Blue border */
+    -fx-border-width: 1px;
+    -fx-background-color: #ffffff; /* White background */
+    -fx-text-fill: #000000; /* Black text */
+    -fx-padding: 5px;
+    -fx-background-radius: 3px;
+    -fx-border-radius: 3px;
+}
+
+/* Focus effect for text fields */
+.text-field:focused {
+    -fx-border-color: #e31837; /* Red border when focused */
+    -fx-border-width: 2px;
+}
+
+/* Style for the labels next to the text fields */
+.label.small-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #006491; /* Blue color */
+}
+.text {
+    -fx-border-color: #006491; /* Blue border */
+    -fx-font-size: 14px;
+    -fx-border-width: 1px;
+    -fx-background-color: #ffffff; /* White background */
+    -fx-text-fill: #000000; /* Black text */
+    -fx-padding: 5px;
+    -fx-background-radius: 3px;
+    -fx-border-radius: 3px;
+}
+#totaltext{
+    -fx-border-color: #006491; /* Blue border */
+    -fx-font-size: 25px;
+    -fx-text-fill: #006491;
+}
+#tablefont{
+    -fx-font-size: 14px;
+}

@@ -4,10 +4,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.junit.Test;
 
 import java.io.File;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class ConfigController {
 
@@ -57,7 +62,24 @@ public class ConfigController {
             primaryStage.setScene(detailsScene);
         } catch (Exception e) {
             e.printStackTrace();
+            showErrorDialog("Error loading the details screen", e.getMessage());
         }
+    }
+
+    private void showErrorDialog(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+    @Test
+    public void testValidateTime() {
+        ConfigController controller = new ConfigController();
+        assertTrue(controller.validateTime("12:34"));
+        assertFalse(controller.validateTime("1234"));
+        assertFalse(controller.validateTime("12:345"));
+        assertFalse(controller.validateTime("ab:cd"));
     }
 }
 
